@@ -30,8 +30,9 @@ provider.setCustomParameters({
 export const auth = getAuth()
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider)
 
-export const database = getFirestore();
 
+
+export const database = getFirestore();
 export const createUserDocumentFromAuth = async (userAuth) => {
   const userDocRef = doc(database, "users", userAuth.uid)
   const userSnapshot = await getDoc(userDocRef)
