@@ -3,6 +3,7 @@ import {
   getAuth,
   signInWithPopup,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   GoogleAuthProvider
 } from "firebase/auth"
 import {
@@ -22,7 +23,7 @@ const firebaseConfig = {
 };
 initializeApp(firebaseConfig);
 
-
+// Authentication
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({
   prompt: "select_account"
@@ -31,9 +32,14 @@ provider.setCustomParameters({
 export const auth = getAuth()
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider)
 
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  return await createUserWithEmailAndPassword(auth, email, password)
+}
+
+
+// Database
 export const database = getFirestore();
-
-
 export const createUserDocumentFromAuth = async (userAuth, additional = {}) => {
   const userDocRef = doc(database, "users", userAuth.uid)
   const userSnapshot = await getDoc(userDocRef)
@@ -54,7 +60,9 @@ export const createUserDocumentFromAuth = async (userAuth, additional = {}) => {
   return userDocRef
 }
 
-export const createAuthUserWithEmailAndPassword = async (email, password) => {
+
+// SignIn
+export const signinAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
-  return await createUserWithEmailAndPassword(auth, email, password)
+  return await signInWithEmailAndPassword(auth, email, password)
 }
