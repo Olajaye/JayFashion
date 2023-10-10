@@ -1,9 +1,10 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
+
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils'
 import FormInput from '../forminput/forminput.component'
-import "./signup-form.style.scss"
 import Button from '../button/Button-component'
+
+import "./signup-form.style.scss"
 
 const defaultFormFeilds = {
   displayName: "",
@@ -14,17 +15,21 @@ const defaultFormFeilds = {
 
 function Signup() {
   const [fromFeilds, setFormFeilds] = useState(defaultFormFeilds)
-
   const { displayName, email, password, confirmPassword } = fromFeilds
 
+
+
+  //reset formfeild
   const resetFormFeild = () => {
     setFormFeilds(defaultFormFeilds)
   }
+  // handling change of formfeild
   const handleChange = (event) => {
     const { name, value } = event.target
     setFormFeilds({ ...fromFeilds, [name]: value })
   }
 
+  //handling submit of formfeild
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (password !== confirmPassword) {

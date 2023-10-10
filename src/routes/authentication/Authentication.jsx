@@ -11,7 +11,6 @@ function Authentication() {
 
   return (
     <div className='authentication-container'>
-
       <Signin />
       <Signup />
     </div>
