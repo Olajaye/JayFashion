@@ -30,7 +30,7 @@ function Signin() {
     setFormFeilds({ ...fromFeilds, [name]: value })
   }
 
-  //handling submit singin email and pass word and creating or geting a data base from firestore
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
@@ -46,7 +46,6 @@ function Signin() {
   // signing in with google email
   const signInWithGoogle = async () => {
     await signInWithGooglePopup()
-
   }
 
   return (

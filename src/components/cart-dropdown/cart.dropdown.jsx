@@ -4,6 +4,8 @@ import CartItem from "../cart-item/CartItem";
 import { useContext } from "react";
 import { CartContext } from "../context/cartdropdown.context";
 import { useNavigate } from "react-router-dom";
+
+
 function Cartdropdown() {
   const { cartItems } = useContext(CartContext)
   const navigate = useNavigate()
